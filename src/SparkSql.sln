@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spark.DatabaseAccessor", "Spark.DatabaseAccessor\Spark.DatabaseAccessor.csproj", "{154C048A-98CD-4D10-9FEC-5A7ED399A6C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spark.DatabaseAccessor.SqlSugar", "Spark.DatabaseAccessor.SqlSugar\Spark.DatabaseAccessor.SqlSugar.csproj", "{FD9BA4E7-7DE9-4A07-A383-A1564A7F8C39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{154C048A-98CD-4D10-9FEC-5A7ED399A6C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{154C048A-98CD-4D10-9FEC-5A7ED399A6C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{154C048A-98CD-4D10-9FEC-5A7ED399A6C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{154C048A-98CD-4D10-9FEC-5A7ED399A6C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD9BA4E7-7DE9-4A07-A383-A1564A7F8C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD9BA4E7-7DE9-4A07-A383-A1564A7F8C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD9BA4E7-7DE9-4A07-A383-A1564A7F8C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD9BA4E7-7DE9-4A07-A383-A1564A7F8C39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9AE1715-EEE4-402C-B9CC-4DB4F8E20138}
+	EndGlobalSection
+EndGlobal
