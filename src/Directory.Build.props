@@ -15,7 +15,7 @@
     <RepositoryUrl>https://gitee.com/weile0796/sparksql</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>SparkSql;SqlSugar;DatabaseAccessor</PackageTags>
-    <PackageOutputPath>../nupkgs</PackageOutputPath>
+    <PackageOutputPath>../../nupkgs</PackageOutputPath>
     <Description>一个抽象、提供常用数据库操作API的数据库访问器项目</Description>
   </PropertyGroup>
 
