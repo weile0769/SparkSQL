@@ -6,7 +6,7 @@ namespace Spark.Extensions
     /// <summary>
     ///     SQL语句参数格式化扩展类
     /// </summary>
-    internal class SqlSugarSqlProfilerExtensions
+    internal static class SqlSugarSqlProfilerExtensions
     {
         /// <summary>
         ///     格式化参数
@@ -14,7 +14,7 @@ namespace Spark.Extensions
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public static string ParameterFormat(string sql, SugarParameter[] parameters)
+        public static string ParameterFormat(this string sql, SugarParameter[] parameters)
         {
             for (int i = parameters.Length - 1; i >= 0; i--)
             {
@@ -51,7 +51,7 @@ namespace Spark.Extensions
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">参数</param>
         /// <returns></returns>
-        public static string ParameterFormat(string sql, object parameters)
+        public static string ParameterFormat(this string sql, object parameters)
         {
             return ParameterFormat(sql, (SugarParameter[])parameters);
         }

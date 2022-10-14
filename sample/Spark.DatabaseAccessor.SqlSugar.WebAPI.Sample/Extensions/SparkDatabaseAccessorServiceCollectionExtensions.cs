@@ -16,7 +16,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Extensions
         {
             var options = new DatabaseAccessorOptions();
             configuration.GetSection(DatabaseAccessorOptions.OptionName).Bind(options);
-            services.AddSqlSugarDatabaseAccessor(option =>
+            services.AddSparkDatabaseAccessor(option =>
             {
                 option.DefaultConnectionName = options.DefaultConnectionName;
                 option.CQRSEnabled = options.CQRSEnabled;

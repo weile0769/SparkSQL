@@ -40,8 +40,8 @@ namespace Spark.DatabaseAccessor.SqlSugar.Contexts
         public object GetDatabaseContext(string? connectionName = default)
         {
             connectionName = connectionName ?? _databaseAccessorOptions.DefaultConnectionName;
-            var databaseClient = (SqlSugarClient)_sqlSugarClient;
-            return databaseClient.GetConnection(connectionName);
+            var databaseClient = (SqlSugarScope)_sqlSugarClient;
+            return databaseClient.GetConnectionScope(connectionName);
         }
     }
 }

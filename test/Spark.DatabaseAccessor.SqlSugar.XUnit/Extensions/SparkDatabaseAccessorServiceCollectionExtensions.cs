@@ -15,7 +15,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions
         public static void AddSparkDatabaseAccessor(this IServiceCollection services)
         {
             var options = SparkDatabaseAccessorOptionsBuilder.Build();
-            services.AddSqlSugarDatabaseAccessor(option =>
+            services.AddSparkDatabaseAccessor(option =>
             {
                 option.DefaultConnectionName = options.DefaultConnectionName;
                 option.CQRSEnabled = options.CQRSEnabled;

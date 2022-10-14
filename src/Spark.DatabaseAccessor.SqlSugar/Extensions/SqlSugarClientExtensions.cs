@@ -6,22 +6,25 @@ using Spark.Extensions;
 using SqlSugar;
 using System.Text;
 
-namespace Spark.DatabaseAccessor.SqlSugar.Builders
+namespace Spark.DatabaseAccessor.SqlSugar.Extensions
 {
     /// <summary>
-    ///   数据库日志配置构造器
+    ///     SqlSugarClient扩展类
     /// </summary>
-    public class SqlSugarDatabaseSqlLoggingBuilder
+    internal static class SqlSugarClientExtensions
     {
         /// <summary>
-        ///     构造
+        ///     配置SqlSugarClient数据库对象Aop事件
         /// </summary>
-        /// <returns></returns>
-        public static void Build(DatabaseAccessorOptions databaseAccessorOptions, SqlSugarClient databaseClient)
+        /// <param name="databaseClient">SqlSugarClient数据库对象</param>
+        /// <param name="databaseAccessorOptions">数据库访问器全局配置</param>
+        /// <returns>SqlSugarClient数据库对象</returns>
+        internal static ISqlSugarClient ConfigureAopEvent(this ISqlSugarClient databaseClient, DatabaseAccessorOptions databaseAccessorOptions)
         {
             if (databaseAccessorOptions.PrintSqlLogEnabled)
             {
-                var logger = SparkCheck.NotNull(SparkContext.RootServices).GetRequiredService<ILogger<SqlSugarDatabaseSqlLoggingBuilder>>();
+                var loggerFactory = SparkCheck.NotNull(SparkContext.RootServices).GetRequiredService<ILoggerFactory>();
+                var logger = loggerFactory.CreateLogger("DatabaseAccessorAopEvent");
                 databaseClient.Aop.OnLogExecuted = (sql, p) =>
                 {
                     var stringBuilder = new StringBuilder();
@@ -29,7 +32,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Builders
                     {
                         stringBuilder.AppendLine($"【连接字符串】：{databaseClient.CurrentConnectionConfig.ConnectionString}");
                     }
-                    stringBuilder.AppendLine($"【SQL语句】：{SqlSugarSqlProfilerExtensions.ParameterFormat(sql, p)}");
+                    stringBuilder.AppendLine($"【SQL语句】：{sql.ParameterFormat(p)}");
                     stringBuilder.Append($"【耗时】：{databaseClient.Ado.SqlExecutionTime.TotalMilliseconds} ms");
                     if (databaseAccessorOptions.PrintSqlLogExecutionTimeLimit > 0)
                     {
@@ -44,6 +47,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Builders
                     }
                 };
             }
+            return databaseClient;
         }
     }
 }
