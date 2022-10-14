@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Spark.DatabaseAccessor.SqlSugar.XUnit.Builders;
 using Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions;
 
 namespace Spark.DatabaseAccessor.SqlSugar.XUnit
@@ -18,10 +17,11 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit
         /// </summary>
         /// <param name="hostBuilder"></param>
         public void ConfigureHost(IHostBuilder hostBuilder) =>
-            hostBuilder.ConfigureWebHost(webHostBuilder => webHostBuilder
-                .UseTestServer()
-                .Configure(ConfigureApplication)
-                .ConfigureServices(ConfigureServices));
+            hostBuilder
+            .ConfigureWebHost(webHostBuilder => webHostBuilder
+            .UseTestServer()
+            .Configure(ConfigureApplication)
+            .ConfigureServices(ConfigureServices));
 
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit
         public void ConfigureServices(IServiceCollection services)
         {
             // 注册SqlSugar数据库驱动容器服务
-            services.AddSqlSugarDatabaseAccessor(() => TestsDatabaseAccessorOptionsBuilder.Build());
+            services.AddSparkDatabaseAccessor();
         }
 
         /// <summary>

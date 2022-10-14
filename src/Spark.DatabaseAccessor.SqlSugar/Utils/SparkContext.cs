@@ -1,5 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Spark.DatabaseAccessor.Options;
+﻿using Spark.DatabaseAccessor.Options;
+using System;
 
 namespace Spark.DatabaseAccessor.SqlSugar.Utils
 {
@@ -14,11 +14,6 @@ namespace Spark.DatabaseAccessor.SqlSugar.Utils
         internal static DatabaseAccessorOptions? DatabaseAccessorOptions;
 
         /// <summary>
-        ///     IOC容器访问器
-        /// </summary>
-        internal static IServiceCollection? ServiceCollection;
-
-        /// <summary>
         ///     根服务
         /// </summary>
         internal static IServiceProvider? RootServices;
@@ -27,7 +22,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Utils
         ///     静态设置数据库访问器全局配置
         /// </summary>
         /// <param name="accessorOptions">数据库访问器全局配置</param>
-        public static DatabaseAccessorOptions ConfigureAccessorOptions(DatabaseAccessorOptions accessorOptions)
+        public static DatabaseAccessorOptions ConfigureOptions(DatabaseAccessorOptions accessorOptions)
         {
             var options = DatabaseAccessorOptions = accessorOptions;
             if (options == null)
@@ -35,20 +30,6 @@ namespace Spark.DatabaseAccessor.SqlSugar.Utils
                 throw new InvalidOperationException($"数据库访问器全局配置不能为空：{typeof(DatabaseAccessorOptions).AssemblyQualifiedName}");
             }
             return options;
-        }
-
-        /// <summary>
-        ///     静态设置IOC容器访问器全局配置
-        /// </summary>
-        /// <param name="serviceCollection">IOC容器访问器</param>
-        public static IServiceCollection ConfigureServiceCollection(IServiceCollection serviceCollection)
-        {
-            var services = ServiceCollection = serviceCollection;
-            if (services == null)
-            {
-                throw new InvalidOperationException($"IOC容器访问器全局配置不能为空：{typeof(IServiceCollection).AssemblyQualifiedName}");
-            }
-            return services;
         }
 
         /// <summary>

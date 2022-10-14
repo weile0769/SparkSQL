@@ -2,7 +2,10 @@
 using Spark.DatabaseAccessor.SqlSugar.Builders;
 using Spark.DatabaseAccessor.SqlSugar.Utils;
 using SqlSugar;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Spark.DatabaseAccessor.SqlSugar
 {
@@ -39,9 +42,7 @@ namespace Spark.DatabaseAccessor.SqlSugar
             }
         }
 
-
-
-
+        #region 私有函数
 
         /// <summary>
         ///     获取数据库上下文
@@ -100,5 +101,7 @@ namespace Spark.DatabaseAccessor.SqlSugar
             }
             return sqlClient;
         }
+
+        #endregion
     }
 }

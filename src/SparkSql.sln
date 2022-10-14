@@ -11,7 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{83FCB599-BF3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{236B54D6-365F-4AE9-96BB-963A961A6AC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spark.DatabaseAccessor.SqlSugar.XUnit", "..\test\Spark.DatabaseAccessor.SqlSugar.XUnit\Spark.DatabaseAccessor.SqlSugar.XUnit.csproj", "{659AD192-6843-4DFE-B01E-7942816B60D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spark.DatabaseAccessor.SqlSugar.XUnit", "..\test\Spark.DatabaseAccessor.SqlSugar.XUnit\Spark.DatabaseAccessor.SqlSugar.XUnit.csproj", "{659AD192-6843-4DFE-B01E-7942816B60D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{DBBE689C-8647-44D4-93E4-247D69AF6D10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample", "..\sample\Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample\Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.csproj", "{CC32DCFC-6D05-41B3-BB5A-11B4B371DFCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{659AD192-6843-4DFE-B01E-7942816B60D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{659AD192-6843-4DFE-B01E-7942816B60D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{659AD192-6843-4DFE-B01E-7942816B60D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC32DCFC-6D05-41B3-BB5A-11B4B371DFCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC32DCFC-6D05-41B3-BB5A-11B4B371DFCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC32DCFC-6D05-41B3-BB5A-11B4B371DFCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC32DCFC-6D05-41B3-BB5A-11B4B371DFCB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +47,7 @@ Global
 		{154C048A-98CD-4D10-9FEC-5A7ED399A6C1} = {83FCB599-BF33-4655-89F2-D09B41C5CA1F}
 		{FD9BA4E7-7DE9-4A07-A383-A1564A7F8C39} = {83FCB599-BF33-4655-89F2-D09B41C5CA1F}
 		{659AD192-6843-4DFE-B01E-7942816B60D7} = {236B54D6-365F-4AE9-96BB-963A961A6AC3}
+		{CC32DCFC-6D05-41B3-BB5A-11B4B371DFCB} = {DBBE689C-8647-44D4-93E4-247D69AF6D10}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9AE1715-EEE4-402C-B9CC-4DB4F8E20138}

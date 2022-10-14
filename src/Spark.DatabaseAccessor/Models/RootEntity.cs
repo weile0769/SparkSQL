@@ -1,4 +1,5 @@
 ﻿using Spark.DatabaseAccessor.Attributes;
+using System;
 using System.ComponentModel;
 
 namespace Spark.DatabaseAccessor.Models

@@ -1,4 +1,8 @@
-﻿namespace Spark.DatabaseAccessor.Options
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Spark.DatabaseAccessor.Options
 {
     /// <summary>
     ///   数据库访问器全局配置

@@ -5,7 +5,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Builders
     /// <summary>
     ///   数据库配置生成器
     /// </summary>
-    public static class TestsDatabaseAccessorOptionsBuilder
+    public static class SparkDatabaseAccessorOptionsBuilder
     {
         public static string GetCurrentProjectPath
         {

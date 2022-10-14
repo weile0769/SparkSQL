@@ -1,12 +1,12 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Spark.DatabaseAccessor.SqlSugar.Utils
+namespace System.Threading
 {
     /// <summary>
     ///   异步线程共享上下文
     /// </summary>
     /// <typeparam name="T">共享对象类型</typeparam>
-    internal class AsyncContext<T>
+    public class AsyncContext<T>
     {
         /// <summary>
         ///   共享对象字典集

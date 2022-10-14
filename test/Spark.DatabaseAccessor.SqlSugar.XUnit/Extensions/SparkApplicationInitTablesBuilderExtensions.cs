@@ -5,7 +5,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions
     /// <summary>
     ///   应用数据结构扩展类
     /// </summary>
-    public static class AppInitTablesBuilderExtensions
+    public static class SparkApplicationInitTablesBuilderExtensions
     {
         /// <summary>
         ///   表初始化服务

@@ -1,4 +1,6 @@
-﻿namespace Spark.DatabaseAccessor.Attributes
+﻿using System;
+
+namespace Spark.DatabaseAccessor.Attributes
 {
     /// <summary>
     ///     数据列特性

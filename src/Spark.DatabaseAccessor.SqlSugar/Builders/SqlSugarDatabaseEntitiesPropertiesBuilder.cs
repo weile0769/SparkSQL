@@ -1,5 +1,6 @@
 ﻿using Spark.DatabaseAccessor.Attributes;
 using SqlSugar;
+using System;
 using System.Reflection;
 
 namespace Spark.DatabaseAccessor.SqlSugar.Builders

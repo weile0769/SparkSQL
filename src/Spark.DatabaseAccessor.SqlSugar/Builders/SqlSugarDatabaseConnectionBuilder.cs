@@ -1,5 +1,7 @@
 ﻿using Spark.DatabaseAccessor.SqlSugar.Utils;
 using SqlSugar;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Spark.DatabaseAccessor.SqlSugar.Builders
 {
