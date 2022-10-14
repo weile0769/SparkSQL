@@ -137,7 +137,7 @@ namespace Spark.DatabaseAccessor.Repositories
         /// <param name="sql">完整的SQL语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>数据列表</returns>
-        List<TEntity> QuerySql(string sql, object parameters = default);
+        List<TEntity> QuerySql(string sql, object? parameters = default);
 
         /// <summary>
         ///     查询数据列表
@@ -145,7 +145,7 @@ namespace Spark.DatabaseAccessor.Repositories
         /// <param name="sql">完整的SQL语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>DataTable</returns>
-        DataTable QueryTable(string sql, object parameters = default);
+        DataTable QueryTable(string sql, object? parameters = default);
 
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace Spark.DatabaseAccessor.Repositories
         /// <param name="pageSize">页容量</param>
         /// <param name="orderByFileds">排序条件</param>
         /// <returns>数据列表</returns>
-        PageModel<TEntity> QueryPage(Expression<Func<TEntity, bool>> whereExpression, int pageIndex = 1, int pageSize = 20, string orderByFileds = default);
+        PageModel<TEntity> QueryPage(Expression<Func<TEntity, bool>> whereExpression, int pageIndex = 1, int pageSize = 20, string? orderByFileds = default);
 
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace Spark.DatabaseAccessor.Repositories
         /// <param name="entity">实体类</param>
         /// <param name="insertColumns">指定只插入列</param>
         /// <returns>影响行数</returns>
-        int Insert(TEntity entity, Expression<Func<TEntity, object>> insertColumns = default);
+        int Insert(TEntity entity, Expression<Func<TEntity, object>>? insertColumns = default);
 
         /// <summary>
         ///     批量插入
@@ -219,7 +219,7 @@ namespace Spark.DatabaseAccessor.Repositories
         /// <param name="entities">实体集合</param>
         /// <param name="insertColumns">指定只插入列</param>
         /// <returns>影响行数</returns>
-        int Insert(List<TEntity> entities, Expression<Func<TEntity, object>> insertColumns = default);
+        int Insert(List<TEntity> entities, Expression<Func<TEntity, object>>? insertColumns = default);
 
         #endregion
 
@@ -407,7 +407,7 @@ namespace Spark.DatabaseAccessor.Repositories
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">参数集</param>
         /// <returns></returns>
-        int ExecuteCommand(string sql, object parameters = default);
+        int ExecuteCommand(string sql, object? parameters = default);
 
         #endregion
 

@@ -172,7 +172,7 @@ namespace Kernel.DatabaseAccessor
         /// <param name="sql">完整的SQL语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>数据列表</returns>
-        public List<TEntity> QuerySql(string sql, object parameters)
+        public List<TEntity> QuerySql(string sql, object? parameters = default)
         {
             return _dbContext.Ado.SqlQuery<TEntity>(sql, parameters);
         }
@@ -183,7 +183,7 @@ namespace Kernel.DatabaseAccessor
         /// <param name="sql">完整的SQL语句</param>
         /// <param name="parameters">参数</param>
         /// <returns>DataTable</returns>
-        public DataTable QueryTable(string sql, object parameters)
+        public DataTable QueryTable(string sql, object? parameters = default)
         {
             return _dbContext.Ado.GetDataTable(sql, parameters);
         }
@@ -556,7 +556,7 @@ namespace Kernel.DatabaseAccessor
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">参数集</param>
         /// <returns></returns>
-        public int ExecuteCommand(string sql, object parameters)
+        public int ExecuteCommand(string sql, object? parameters = default)
         {
             return _dbContext.Ado.ExecuteCommand(sql, parameters);
         }
