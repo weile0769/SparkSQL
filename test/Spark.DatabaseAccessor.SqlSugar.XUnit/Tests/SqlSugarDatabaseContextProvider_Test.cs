@@ -1,5 +1,6 @@
 ﻿using Spark.DatabaseAccessor.Contexts;
 using Spark.DatabaseAccessor.SqlSugar.XUnit.Entities;
+using SqlSugar;
 using Xunit;
 
 namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
@@ -23,15 +24,19 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         }
 
         /// <summary>
+        ///     数据库上下文
+        /// </summary>
+        private ISqlSugarClient _context => (ISqlSugarClient)_databaseContextProvider.GetDatabaseContext();
+
+        /// <summary>
         ///   DatabaseContextProvider_Test数据库上下文提供器测试案例
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "数据库上下文提供器测试案例")]
         public async Task DatabaseContextProvider_Test()
         {
-            var context = _databaseContextProvider.GetDatabaseContext();
             //初始化表
-            Database.Context.DbMaintenance.TruncateTable<User>();
+            _context.DbMaintenance.TruncateTable<User>();
             //插入数据
             var userModel = new User
             {
@@ -39,9 +44,9 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
                 UserName = "小明",
                 Password = "123456"
             };
-            var insertSuccessedCount = await Database.Context.Insertable(userModel).ExecuteCommandAsync();
+            var insertSuccessedCount = await _context.Insertable(userModel).ExecuteCommandAsync();
             //查询全部
-            var userModels = await Database.Context.Queryable<User>().ToListAsync();
+            var userModels = await _context.Queryable<User>().ToListAsync();
             Assert.Equal(userModels.Count, insertSuccessedCount);
         }
     }
