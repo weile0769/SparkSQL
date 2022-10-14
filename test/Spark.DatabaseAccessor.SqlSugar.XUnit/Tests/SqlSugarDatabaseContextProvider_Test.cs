@@ -1,5 +1,6 @@
 ﻿using Spark.DatabaseAccessor.Contexts;
 using Spark.DatabaseAccessor.SqlSugar.XUnit.Entities;
+using Spark.DatabaseAccessor.Utils;
 using SqlSugar;
 using Xunit;
 
@@ -8,6 +9,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
     /// <summary>
     ///     数据库上下文提供器测试案例
     /// </summary>
+    [Collection("数据仓储测试案例顺序执行组别")]
     public class SqlSugarDatabaseContextProvider_Test
     {
         /// <summary>
@@ -35,12 +37,14 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         [Fact(DisplayName = "数据库上下文提供器测试案例")]
         public async Task DatabaseContextProvider_Test()
         {
+            //创建ID标识
+            var id = IDGen.SequentialInt64();
             //初始化表
             _context.DbMaintenance.TruncateTable<User>();
             //插入数据
             var userModel = new User
             {
-                Id = 1,
+                Id = id,
                 UserName = "小明",
                 Password = "123456"
             };

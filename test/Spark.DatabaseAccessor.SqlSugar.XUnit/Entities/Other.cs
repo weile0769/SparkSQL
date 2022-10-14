@@ -1,10 +1,11 @@
 ﻿using Spark.DatabaseAccessor.Attributes;
 using Spark.DatabaseAccessor.Models;
+using System.ComponentModel;
 
 namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Entities
 {
-    [SqlTable(TableName = "user")]
-    public class User : RootEntity
+    [SqlTable("user", "用户信息", ConnectionName = "spark1")]
+    public class Other : RootEntity
     {
         /// <summary>
         ///   用户名
@@ -29,5 +30,21 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Entities
         /// </summary>
         [SqlColumn(ColumnName = "birthday", ColumnDescription = "生日日期", IsNullable = true)]
         public DateTime? Birthday { get; set; }
+    }
+
+    /// <summary>
+    ///   性别
+    /// </summary>
+    public enum GenderEnum
+    {
+        /// <summary>
+        ///     男
+        /// </summary>
+        [Description("男")] Boy = 1,
+
+        /// <summary>
+        ///     女
+        /// </summary>
+        [Description("女")] Girl = 2
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Spark.DatabaseAccessor.SqlSugar.XUnit.Entities;
 
 namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions
 {
@@ -13,7 +14,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions
         /// <param name="builder"></param>
         public static void UseApplicationInitTables(this IApplicationBuilder builder)
         {
-            //Database.Context.CodeFirst.InitTables<User>();
+            Database.Context.CodeFirst.InitTables<User>();
         }
     }
 }
