@@ -61,7 +61,7 @@ var app = builder.Build();
 app.UseSparkDatabaseAccessor();
 app.Run();
 ```
-##### 说明：
+**说明：** <br>
 DatabaseAccessorOptions配置项：
 - DefaultConnectionName：当前主库连接标识
 - CQRSEnabled：是否支持读写分离
