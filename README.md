@@ -2,7 +2,8 @@
 	<h1 align="center" style="color:#4da7fd"><b>SparkSql</b></h1>
 </div>
 <div align="center">
-<h4 align="center">⚡一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目</h4>
+<span align="center" style="font-weight:bold" ><⚡一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目</span>
+<br>
 <span align="center" style="letter-spacing:1.8px" >致力于功能抽象化,降低系统对开源组件方案的依赖性,让功能特性实现更加多样性、可扩展性。</span>
 </div>
 <br>
