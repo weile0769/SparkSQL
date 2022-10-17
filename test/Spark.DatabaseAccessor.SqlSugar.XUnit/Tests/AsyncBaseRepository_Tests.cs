@@ -64,8 +64,8 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModel);
             //查询全部
-            var userModels = await _userRepository.QueryFirstOrDefaultAsync(s => s.Id == id);
-            Assert.NotNull(userModels);
+            var userModels = await _userRepository.QueryAllAsync();
+            Assert.Contains(userModel.Id, userModels.Select(s => s.Id));
         }
 
 
@@ -133,20 +133,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(userModels);
             await Assert.ThrowsAsync<SqlSugarException>(async () =>
             {
@@ -172,20 +172,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(userModels);
             await Assert.ThrowsAsync<SqlSugarException>(async () =>
             {
@@ -211,20 +211,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(userModels);
             //Lambda条件表达式单条查询
             var userModel = await _userRepository.QueryFirstOrDefaultAsync(s => s.RecordState == RecordStateEnum.Normal);
@@ -232,14 +232,14 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         }
 
         /// <summary>
-        ///   QueryQueryFirstOrDefaultWithFieldColumnsByLinqWhereThrowsExceptionAsync_Test Lambda条件表达式按指定列名单条查询测试案例
+        ///   QueryQueryFirstOrDefaultWithFieldColumnsByLinqWhereAsync_Test Lambda条件表达式按指定列名单条查询测试案例
         /// <remarks>
         ///  查询结果为多条数据，则只取其中一条
         /// </remarks>
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "Lambda条件表达式按指定列名单条查询,多条只取其中一条测试案例")]
-        public async Task QueryQueryFirstOrDefaultWithFieldColumnsByLinqWhereThrowsExceptionAsync_Test()
+        public async Task QueryQueryFirstOrDefaultWithFieldColumnsByLinqWhereAsync_Test()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
@@ -247,20 +247,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(userModels);
             //Lambda条件表达式单条查询
             var userModel = await _userRepository.QueryFirstOrDefaultAsync(s => s.RecordState == RecordStateEnum.Normal, "id,user_name");
@@ -284,20 +284,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = id+1,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id+1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //Lambda条件表达式多条查询
             var userModels = await _userRepository.QueryAsync(s => s.RecordState == RecordStateEnum.Normal, "id desc");
@@ -322,20 +322,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = id+1,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id+1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //Lambda条件表达式多条查询
             var userModels = await _userRepository.QueryAsync(s => s.RecordState == RecordStateEnum.Normal, s => s.Id, false);
@@ -362,20 +362,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = id+1,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id+1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //SQL条件表达式多条查询
             var userModels = await _userRepository.QueryAsync($"record_state={(int)RecordStateEnum.Normal}", "id desc");
@@ -400,20 +400,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = id+1,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id+1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //Lambda条件表达式指定条数查询
             var userModels = await _userRepository.QueryTopAsync(s => s.RecordState == RecordStateEnum.Normal, 1, "id desc");
@@ -439,20 +439,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = id+1,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id+1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //SQL条件指定条数查询
             var userModels = await _userRepository.QueryTopAsync($"record_state={(int)RecordStateEnum.Normal}", 1, "id desc");
@@ -474,20 +474,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //SQL语句查询
             var userModels = await _userRepository.QuerySqlAsync($"select  * from user where record_state={(int)RecordStateEnum.Normal};");
@@ -510,20 +510,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //SQL语句表格查询
             var userTable = await _userRepository.QueryTableAsync($"select  * from user where record_state={(int)RecordStateEnum.Normal};");
@@ -548,20 +548,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = id+1,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id+1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //Lambda条件表达式多条分页查询
             var userPageModel = await _userRepository.QueryPageAsync(s => s.RecordState == RecordStateEnum.Normal, 1, 200, "id desc");
@@ -585,20 +585,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //Lambda条件表达式多条查询记录数
             var userCount = await _userRepository.CountAsync(s => s.RecordState == RecordStateEnum.Normal);
@@ -618,20 +618,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var insertUserModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.InsertAsync(insertUserModels);
             //Lambda条件表达式多条查询是否存在
             var userAny = await _userRepository.AnyAsync(s => s.RecordState == RecordStateEnum.Normal);
