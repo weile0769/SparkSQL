@@ -671,11 +671,11 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         #region InsertAsync插入测试案例
 
         /// <summary>
-        ///   InsertAsync_Test 单条实体插入测试案例
+        ///   SingleInsertAsync_Test 单条实体插入测试案例
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "单条实体插入测试案例")]
-        public async Task InsertAsync_Test()
+        public async Task SingleInsertAsync_Test()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
@@ -695,11 +695,11 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         }
 
         /// <summary>
-        ///   AppointInsertAsync_Test 单条实体指定列插入测试案例
+        ///   AppointInsertColumnsSingleInsertAsync_Test 单条实体指定列插入测试案例
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "单条实体指定列插入测试案例")]
-        public async Task AppointInsertAsync_Test()
+        public async Task AppointInsertColumnsSingleInsertAsync_Test()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
@@ -729,24 +729,26 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
+            //创建ID标识
+            var id1 = IDGen.SequentialInt64();
             //初始化表
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id1,
+                UserName = "小化",
+                Password = "123456"
+              }
+            };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModels);
             //查询全部
             userModels = await _userRepository.QueryAllAsync();
@@ -763,26 +765,28 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
+            //创建ID标识
+            var id1 = IDGen.SequentialInt64();
             //初始化表
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456",
-        Gender=GenderEnum.Boy
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456",
-        Gender=GenderEnum.Boy
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456",
+                Gender=GenderEnum.Boy
+              },
+              new User
+              {
+                Id = id1,
+                UserName = "小明",
+                Password = "123456",
+                Gender=GenderEnum.Boy
+              }
+            };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModels, s => new { s.Id, s.UserName, s.CreationDate, s.LastModified, s.RecordState, s.Gender });
             //查询全部
             userModels = await _userRepository.QueryAllAsync();
