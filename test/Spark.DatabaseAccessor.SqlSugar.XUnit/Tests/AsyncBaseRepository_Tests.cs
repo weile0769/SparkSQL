@@ -1745,15 +1745,15 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
 
         #endregion
 
-        #region 将数据库上下文切换到瞬时状态
+        #region 多线程测试案例
 
 
         /// <summary>
-        ///   ParallelTaskCheckAfterChangeTransientDatabaseContextID_Tests 任务并行情况下ChangeTransient将数据库上下文切换到瞬时状态测试案例
+        ///   ParallelTaskExecuteCommandAsync_Tests 多线程测试案例
         /// </summary>
         /// <returns></returns>
-        [Fact(DisplayName = "任务并行情况下将数据库上下文切换到瞬时状态测试案例")]
-        public async Task ParallelTaskCheckAfterChangeTransientDatabaseContextID_Tests()
+        [Fact(DisplayName = "多线程测试案例")]
+        public async Task ParallelTaskExecuteCommandAsync_Tests()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
