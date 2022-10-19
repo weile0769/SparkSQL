@@ -889,7 +889,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "单条实体SQL条件更新测试案例")]
-        public async Task UpdateWithSQLWhereAsync_Test()
+        public async Task SingleUpdateWithSQLWhereAsync_Test()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
@@ -917,7 +917,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "单条实体Lambda表达式条件更新测试案例")]
-        public async Task UpdateWithLinqWhereAsync_Test()
+        public async Task SingleUpdateWithLinqWhereAsync_Test()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
@@ -941,10 +941,10 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         }
 
         /// <summary>
-        ///   UpdateWithSetColumnsAndLinqWhereAsync_Test 单条实体Lambda表达式条件动态设置更新测试案例
+        ///   UpdateWithSetColumnsAndLinqWhereAsync_Test Lambda表达式条件动态设置更新测试案例
         /// </summary>
         /// <returns></returns>
-        [Fact(DisplayName = "单条实体Lambda表达式条件动态设置更新测试案例")]
+        [Fact(DisplayName = "Lambda表达式条件动态设置更新测试案例")]
         public async Task UpdateWithSetColumnsAndLinqWhereAsync_Test()
         {
             //创建ID标识
@@ -980,21 +980,21 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456",
-                Birthday = DateTime.Now
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小红",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456",
+                        Birthday = DateTime.Now
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小红",
+                Password = "123456"
+              }
+            };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModels);
             //更新数据
             userModels.ForEach(s => s.Password = "654321");
@@ -1008,11 +1008,11 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         }
 
         /// <summary>
-        ///   ListUpdateWithUpdateColumnsAsync_Test 多条实体指定列更新测试案例
+        ///   AppointUpdateColumnsListUpdateAsync_Test 多条实体指定列更新测试案例
         /// </summary>
         /// <returns></returns>
         [Fact(DisplayName = "多条实体指定列更新测试案例")]
-        public async Task ListUpdateWithUpdateColumnsAsync_Test()
+        public async Task AppointUpdateColumnsListUpdateAsync_Test()
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
@@ -1020,20 +1020,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModels);
             //更新数据
             userModels.ForEach(s => s.Password = "654321");

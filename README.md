@@ -435,7 +435,6 @@ public async Task SingleInsertAsync_Sample()
     };
     await _userRepository.InsertAsync(userModel);
 }
-
 ```
 
 **单条实体指定列插入使用案例**
@@ -455,7 +454,6 @@ public async Task AppointInsertColumnsSingleInsertAsync_Sample()
     };
     await _userRepository.InsertAsync(userModel, s => new { s.Id, s.UserName, s.CreationDate, s.LastModified, s.RecordState, s.Gender });
 }
-
 ```
 
 **多条实体插入使用案例**
@@ -484,7 +482,6 @@ public async Task ListInsertAsync_Sample()
     };
     await _userRepository.InsertAsync(userModels);
 }
-
 ```
 
 **多条实体指定列插入使用案例**
@@ -513,5 +510,116 @@ public async Task AppointInsertColumnsListInsertAsync_Sample()
     };
     await _userRepository.InsertAsync(userModels, s => new { s.Id, s.UserName, s.CreationDate, s.LastModified, s.RecordState, s.Gender });
 }
+```
 
+#### 5. 数据更新使用案例
+下面列举的案例是异步案例，同步案例用法一致。
+
+**单条实体更新使用案例**
+```csharp
+/// <summary>
+///   SingleUpdateAsync_Sample 单条实体更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleUpdateAsync_Sample()
+{
+    //更新数据
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    userModel.Password = "654321";
+    await _userRepository.UpdateAsync(userModel);
+}
+```
+
+**单条实体指定列更新使用案例**
+```csharp
+/// <summary>
+///   AppointUpdateColumnsSingleUpdateAsync_Sample 单条实体指定列更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task AppointUpdateColumnsSingleUpdateAsync_Sample()
+{
+    //更新数据
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    userModel.Password = "654321";
+    await _userRepository.UpdateAsync(userModel, s => new { s.Password });
+}
+```
+
+**单条实体指定列Lambda表达式条件更新使用案例**
+```csharp
+/// <summary>
+///   AppointUpdateColumnsSingleUpdateByLinqWhereAsync_Sample 单条实体指定列Lambda表达式条件更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task AppointUpdateColumnsSingleUpdateByLinqWhereAsync_Sample()
+{
+    //更新数据
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    userModel.Password = "654321";
+    await _userRepository.UpdateAsync(userModel, s => new { s.Password }, s => s.Id == 5757720142968560414);
+}
+```
+
+**单条实体SQL条件更新使用案例**
+```csharp
+/// <summary>
+///   SingleUpdateWithSQLWhereAsync_Sample 单条实体SQL条件更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleUpdateWithSQLWhereAsync_Sample()
+{
+    //更新数据
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    userModel.Password = "654321";
+    await _userRepository.UpdateAsync(userModel, s => s.Id == 5757720142968560414);
+}
+```
+
+**Lambda表达式条件动态设置更新使用案例**
+```csharp
+/// <summary>
+///   DynamicSetUpdateColumnsWithLinqWhereAsync_Sample Lambda表达式条件动态设置更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task DynamicSetUpdateColumnsWithLinqWhereAsync_Sample()
+{
+    //更新数据
+    await _userRepository.UpdateAsync(s => new User { Password = "654321" }, s => s.Id == 5757720142968560414);
+}
+```
+
+**多条实体更新使用案例**
+```csharp
+/// <summary>
+///   ListUpdateAsync_Sample 多条实体更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListUpdateAsync_Sample()
+{
+    //更新数据
+    var userModels = await _userRepository.QueryAsync(s => s.Id=5757720142968560414); 
+    if(!userModels.Any()) throw new ArgumentNullException(nameof(userModels),"用户数据为空");
+    userModels.ForEach(s => s.Password = "654321");
+    await _userRepository.UpdateAsync(userModels);
+}
+```
+
+**多条实体指定列更新使用案例**
+```csharp
+/// <summary>
+///   AppointUpdateColumnsListUpdateAsync_Sample 多条实体指定列更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task AppointUpdateColumnsListUpdateAsync_Sample()
+{
+    //更新数据
+    var userModels = await _userRepository.QueryAsync(s => s.Id=5757720142968560414); 
+    if(!userModels.Any()) throw new ArgumentNullException(nameof(userModels),"用户数据为空");
+    userModels.ForEach(s => s.Password = "654321");
+    await _userRepository.UpdateAsync(userModels, s => new { s.Password });
+}
 ```
