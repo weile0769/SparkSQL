@@ -202,7 +202,6 @@ public async Task QueryBySqlWhereAsync_Sample()
     //SQL条件查询
     var userModels = await _userRepository.QueryAsync($"record_state={(int)RecordStateEnum.Normal}");
 }
-
 ```
 
 **Lambda条件表达式查询使用案例**
@@ -216,7 +215,6 @@ public async Task QueryByLinqWhereAsync_Sample()
     //Lambda条件表达式查询
     var userModels = await _userRepository.QueryAsync(s => s.RecordState == RecordStateEnum.Normal);
 }
-
 ```
 
 **Lambda条件表达式单条查询使用案例**
@@ -233,7 +231,6 @@ public async Task QuerySingleByLinqWhereThrowsExceptionAsync_Sample()
     //Lambda条件表达式单条查询
     var userModels = await _userRepository.QuerySingleAsync(s => s.RecordState == RecordStateEnum.Normal);
 }
-
 ```
 
 **Lambda条件表达式按指定列名单条查询使用案例**
@@ -250,7 +247,6 @@ public async Task QuerySingleWithFieldColumnsByLinqWhereThrowsExceptionAsync_Sam
     //Lambda条件表达式单条查询
     var userModels = await _userRepository.QuerySingleAsync(s => s.RecordState == RecordStateEnum.Normal, "id,user_name");
 }
-
 ```
 
 **Lambda条件表达式按指定列名单条查询,多条只取其中一条使用案例**
@@ -267,7 +263,6 @@ public async Task QueryQueryFirstOrDefaultWithFieldColumnsByLinqWhereAsync_Sampl
     //Lambda条件表达式单条查询
     var userModels = await _userRepository.QueryFirstOrDefaultAsync(s => s.RecordState == RecordStateEnum.Normal, "id,user_name");
 }
-
 ```
 
 **Lambda条件表达式多条查询支持SQL指定排序字段使用案例**
@@ -284,7 +279,6 @@ public async Task QueryByLinqWhereOrWithOrderByFiledsAsync_Sample()
     //Lambda条件表达式多条查询
     var userModels = await _userRepository.QueryAsync(s => s.RecordState == RecordStateEnum.Normal, "id desc");
 }
-
 ```
 
 **Lambda条件表达式多条查询支持SQL指定排序字段使用案例**
@@ -301,7 +295,6 @@ public async Task QueryByLinqWhereWithLinqOrderAsync_Sample()
     //Lambda条件表达式多条查询
     var userModels = await _userRepository.QueryAsync(s => s.RecordState == RecordStateEnum.Normal, s => s.Id, false);
 }
-
 ```
 
 **SQL条件多条查询支持SQL条件设置排序字段使用案例**
@@ -318,7 +311,6 @@ public async Task QueryBySqlWhereOrWithOrderByFiledsAsync_Sample()
     //Lambda条件表达式多条查询
     var userModels = await _userRepository.QueryAsync($"record_state={(int)RecordStateEnum.Normal}", "id desc");
 }
-
 ```
 
 **Lambda条件表达式指定条数查询支持SQL条件设置排序字段使用案例**
@@ -334,7 +326,6 @@ public async Task QueryTopByLinqWhereOrWithOrderByFiledsAsync_Sample()
 {
     var userModels = await _userRepository.QueryTopAsync(s => s.RecordState == RecordStateEnum.Normal, 1, "id desc");
 }
-
 ```
 
 **SQL条件指定条数查询支持SQL条件设置排序字段使用案例**
@@ -350,7 +341,6 @@ public async Task QueryTopBySQLWhereOrWithOrderByFiledsAsync_Sample()
 {
     var userModels = await _userRepository.QueryTopAsync($"record_state={(int)RecordStateEnum.Normal}", 1, "id desc");
 }
-
 ```
 
 **SQL语句查询使用案例**
@@ -363,7 +353,6 @@ public async Task QuerySqlAsync_Sample()
 {
     var userModels = await _userRepository.QuerySqlAsync($"select  * from user where record_state={(int)RecordStateEnum.Normal};");
 }
-
 ```
 
 **SQL语句表格查询使用案例**
@@ -376,7 +365,6 @@ public async Task QueryTableAsync_Sample()
 {
     var userModels = await _userRepository.QueryTableAsync($"select  * from user where record_state={(int)RecordStateEnum.Normal};");
 }
-
 ```
 
 **Lambda条件表达式多条指定容量分页查询支持SQL指定排序字段使用案例**
@@ -389,7 +377,6 @@ public async Task QueryPageByLinqWhereOrWithOrderByFiledsAsync_Sample()
 {
     var userModels = await _userRepository.QueryPageAsync(s => s.RecordState == RecordStateEnum.Normal, 1, 200, "id desc");
 }
-
 ```
 
 **Lambda条件表达式查询记录数使用案例**
@@ -402,7 +389,6 @@ public async Task QueryCountByLinqWhereAsync_Sample()
 {
     var userModels = await _userRepository.CountAsync(s => s.RecordState == RecordStateEnum.Normal);
 }
-
 ```
 
 **Lambda条件表达式查询是否存在使用案例**
@@ -415,7 +401,6 @@ public async Task QueryAnyByLinqWhereAsync_Sample()
 {
     var userModels = await _userRepository.AnyAsync(s => s.RecordState == RecordStateEnum.Normal);
 }
-
 ```
 
 **Lambda条件表达式查询是否存在使用案例**
@@ -428,7 +413,105 @@ public async Task QueryAnyByLinqWhereAsync_Sample()
 {
     var userModels = await _userRepository.AnyAsync(s => s.RecordState == RecordStateEnum.Normal);
 }
-
 ```
 
 #### 4. 数据插入使用案例
+下面列举的案例是异步案例，同步案例用法一致。
+
+**单条实体插入使用案例**
+```csharp
+/// <summary>
+///   SingleInsertAsync_Sample 单条实体插入使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleInsertAsync_Sample()
+{
+    //插入数据
+    var userModel = new User
+    {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+    };
+    await _userRepository.InsertAsync(userModel);
+}
+
+```
+
+**单条实体指定列插入使用案例**
+```csharp
+/// <summary>
+///   AppointInsertColumnsSingleInsertAsync_Sample 单条实体指定列插入使用案例
+/// </summary>
+/// <returns></returns>
+public async Task AppointInsertColumnsSingleInsertAsync_Sample()
+{
+    //插入数据
+    var userModel = new User
+    {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+    };
+    await _userRepository.InsertAsync(userModel, s => new { s.Id, s.UserName, s.CreationDate, s.LastModified, s.RecordState, s.Gender });
+}
+
+```
+
+**多条实体插入使用案例**
+```csharp
+/// <summary>
+///   ListInsertAsync_Sample 多条实体插入使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListInsertAsync_Sample()
+{
+    //插入数据
+    var userModels = new List<User>
+    {
+        new User
+        {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+        },
+        new User
+        {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小化",
+        Password = "123456"
+        }
+    };
+    await _userRepository.InsertAsync(userModels);
+}
+
+```
+
+**多条实体指定列插入使用案例**
+```csharp
+/// <summary>
+///   AppointInsertColumnsListInsertAsync_Sample 多条实体指定列插入使用案例
+/// </summary>
+/// <returns></returns>
+public async Task AppointInsertColumnsListInsertAsync_Sample()
+{
+    //插入数据
+    var userModels = new List<User>
+    {
+        new User
+        {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+        },
+        new User
+        {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小化",
+        Password = "123456"
+        }
+    };
+    await _userRepository.InsertAsync(userModels, s => new { s.Id, s.UserName, s.CreationDate, s.LastModified, s.RecordState, s.Gender });
+}
+
+```
