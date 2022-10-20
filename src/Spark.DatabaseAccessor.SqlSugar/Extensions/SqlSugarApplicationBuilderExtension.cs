@@ -12,7 +12,17 @@ namespace Microsoft.AspNetCore.Builder
         /// </summary>
         /// <param name="builder">应用构造器</param>
         /// <returns></returns>
-        public static void UseSqlSugarDatabaseAccessor(this IApplicationBuilder builder)
+        public static void UseSparkDatabaseAccessor(this IApplicationBuilder builder)
+        {
+            builder.UseSqlSugarDatabaseAccessor();
+        }
+
+        /// <summary>
+        ///     配置数据库操作提供器应用构建
+        /// </summary>
+        /// <param name="builder">应用构造器</param>
+        /// <returns></returns>
+        private static void UseSqlSugarDatabaseAccessor(this IApplicationBuilder builder)
         {
             SparkContext.ConfigureRootServices(builder.ApplicationServices);
         }

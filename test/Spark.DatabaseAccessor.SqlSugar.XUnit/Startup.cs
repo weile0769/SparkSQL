@@ -40,7 +40,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit
         /// <param name="builder"></param>
         private void ConfigureApplication(IApplicationBuilder builder)
         {
-            builder.UseSqlSugarDatabaseAccessor();
+            builder.UseSparkDatabaseAccessor();
             builder.UseApplicationInitTables();
         }
     }

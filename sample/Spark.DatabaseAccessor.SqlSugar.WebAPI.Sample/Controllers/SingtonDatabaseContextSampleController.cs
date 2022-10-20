@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Spark.DatabaseAccessor.SqlSugar.Utils;
 using Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Entities;
+using Spark.DatabaseAccessor.Utils;
+using SqlSugar;
 
 namespace Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Controllers
 {
@@ -16,18 +19,21 @@ namespace Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Controllers
         public SingtonDatabaseContextSampleController()
         {
             #region 初始化
-
-            //初始化表
-            Database.Context.DbMaintenance.TruncateTable<User>();
-            //插入数据
-            var userModel = new User
+            SparkScope.Create((serviceScope) =>
             {
-                Id = 1,
-                UserName = "小明",
-                Password = "123456"
-            };
-            Database.Context.Insertable(userModel).ExecuteCommand();
-
+                //构建数据库上下文
+                var context = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
+                //初始化表
+                context.DbMaintenance.TruncateTable<User>();
+                //插入数据
+                var userModel = new User
+                {
+                    Id = IDGen.SequentialInt64(),
+                    UserName = "小明",
+                    Password = "123456"
+                };
+                var insertSuccessedCount = context.Insertable(userModel).ExecuteCommand();
+            });
             #endregion
         }
 
@@ -39,8 +45,14 @@ namespace Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Controllers
         [Route("users/query-async")]
         public async Task<IActionResult> GetAllAsync()
         {
-            //查询全部
-            var userModels = await Database.Context.Queryable<User>().ToListAsync();
+            List<User>? userModels = null;
+            await SparkScope.CreateAsync(async (serviceScope) =>
+            {
+                //构建数据库上下文
+                var context = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
+                //查询全部
+                userModels = await context.Queryable<User>().ToListAsync();
+            });
             return Ok(userModels);
         }
 
@@ -52,8 +64,14 @@ namespace Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Controllers
         [Route("users/query")]
         public IActionResult GetAll()
         {
-            //查询全部
-            var userModels = Database.Context.Queryable<User>().ToList();
+            List<User>? userModels = null;
+            SparkScope.Create((serviceScope) =>
+            {
+                //构建数据库上下文
+                var context = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
+                //查询全部
+                userModels = context.Queryable<User>().ToList();
+            });
             return Ok(userModels);
         }
     }

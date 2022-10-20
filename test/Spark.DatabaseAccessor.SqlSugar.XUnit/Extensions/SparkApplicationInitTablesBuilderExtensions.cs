@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Spark.DatabaseAccessor.SqlSugar.Utils;
 using Spark.DatabaseAccessor.SqlSugar.XUnit.Entities;
+using SqlSugar;
 
 namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions
 {
@@ -14,7 +17,12 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Extensions
         /// <param name="builder"></param>
         public static void UseApplicationInitTables(this IApplicationBuilder builder)
         {
-            Database.Context.CodeFirst.InitTables<User>();
+            SparkScope.Create((serviceScope) =>
+            {
+                //构建数据库上下文
+                var context = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
+                context.CodeFirst.InitTables<User>();
+            });
         }
     }
 }

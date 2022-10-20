@@ -7,16 +7,16 @@
 
   <PropertyGroup Label="Package">
     <Authors>L.WLe</Authors>
-    <Product>SparkSql</Product>
+    <Product>SparkSQL</Product>
     <Copyright>© 2022 L.WLe</Copyright>
     <PackageProjectUrl>https://gitee.com/weile0796/sparksql</PackageProjectUrl>
     <RepositoryType>Gitee</RepositoryType>
     <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
     <RepositoryUrl>https://gitee.com/weile0796/sparksql</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>SparkSql;SqlSugar;DatabaseAccessor</PackageTags>
+    <PackageTags>SparkSQL;SqlSugar;DatabaseAccessor</PackageTags>
     <PackageOutputPath>../../nupkgs</PackageOutputPath>
-    <Description>一个抽象、提供常用数据库操作API的数据库访问器项目</Description>
+    <Description>⚡一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目</Description>
   </PropertyGroup>
 
   <!-- Using SourceLink -->

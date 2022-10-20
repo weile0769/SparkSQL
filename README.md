@@ -87,7 +87,6 @@ SlaveDatabaseConnections配置项
 - ConnectionString：数据库连接字符串
 
 #### 2. 构建数据库上下文使用案例
-- IDatabaseContextProvider数据库上下文提供器以单例模式注入容器中，因默认实现的ORM完美的支持了线程安全。故如需要实现上下文Scoped作用域模式自行CreateScoped作用域实现。
 - IDatabaseContextProvider数据库上下文提供器中的GetDatabaseContext函数可获取数据库上下文
 - IDatabaseContextProvider数据库上下文提供器返回值Object对象需要自行实现各自的上下文对象。
 

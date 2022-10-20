@@ -1,5 +1,4 @@
 ﻿using Kernel.DatabaseAccessor;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Spark.DatabaseAccessor.Contexts;
 using Spark.DatabaseAccessor.Options;
 using Spark.DatabaseAccessor.Repositories;
@@ -33,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
             //配置Sqlsugar数据库访问器
             services.AddSqlSugarDatabaseAccessor(accessorOptions);
             //配置数据库上下文提供器
-            services.TryAddSingleton<IDatabaseContextProvider, SqlSugarDatabaseContextProvider>();
+            services.AddScoped<IDatabaseContextProvider, SqlSugarDatabaseContextProvider>();
             //配置非泛型数据仓储服务
             services.AddTransient<IBaseRepository, BaseRepository>();
             //配置泛型数据仓储服务
@@ -49,11 +48,10 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="options">自定义配置项</param>
         public static IServiceCollection AddSqlSugarDatabaseAccessor(this IServiceCollection services, DatabaseAccessorOptions options)
         {
-            services.AddSingleton(option =>
+            services.AddScoped(option =>
             {
-                //SqlSugarScope是线程安全，可使用单例注入
                 var connectionOptions = SqlSugarDatabaseConnectionBuilder.Build();
-                return new SqlSugarScope(connectionOptions).ConfigureAopEvent(options);
+                return new SqlSugarClient(connectionOptions).ConfigureAopEvent(options);
             });
             return services;
         }

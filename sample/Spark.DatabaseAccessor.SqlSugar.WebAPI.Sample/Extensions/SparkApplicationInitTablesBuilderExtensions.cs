@@ -1,5 +1,6 @@
-﻿using Spark.DatabaseAccessor.SqlSugar;
+﻿using Spark.DatabaseAccessor.SqlSugar.Utils;
 using Spark.DatabaseAccessor.SqlSugar.WebAPI.Sample.Entities;
+using SqlSugar;
 
 namespace Microsoft.AspNetCore.Builder
 {
@@ -14,7 +15,12 @@ namespace Microsoft.AspNetCore.Builder
         /// <param name="builder"></param>
         public static void UseSparkApplicationInitTables(this IApplicationBuilder builder)
         {
-            Database.Context.CodeFirst.InitTables<User>();
+            SparkScope.Create((serviceScope) =>
+            {
+                //构建数据库上下文
+                var context = serviceScope.ServiceProvider.GetRequiredService<ISqlSugarClient>();
+                context.CodeFirst.InitTables<User>();
+            });
         }
     }
 }
