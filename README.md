@@ -20,8 +20,8 @@ SparkSQL 一款高度抽象的、开箱即用的、具备标准常用数据库�
 
 
 ### 🏅开源地址
-[![Gitee](https://shields.io/badge/Gitee-https://gitee.com/weile0796/SparkSQL-green?logo=gitee&style=flat&logoColor=red)](https://gitee.com/weile0796/SparkSQL)<br>
-[![GitHub](https://shields.io/badge/GitHub-https://github.com/weile0796/SparkSQL-green?logo=github&style=flat)](https://github.com/weile0796/SparkSQL)
+[![Gitee](https://shields.io/badge/Gitee-https://gitee.com/weile0769/SparkSQL-green?logo=gitee&style=flat&logoColor=red)](https://gitee.com/weile0769/SparkSQL)<br>
+[![GitHub](https://shields.io/badge/GitHub-https://github.com/weile0769/SparkSQL-green?logo=github&style=flat)](https://github.com/weile0769/SparkSQL)
 
 ### 📰 功能架构
 
