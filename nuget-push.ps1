@@ -3,12 +3,13 @@ Param(
     # Nuget APIKey
     [string] $apikey
 )
-
+$apikey = $apikey.Replace("--apikey=", "");
 if ($apikey -eq $null -or $apikey -eq "")
 {
     Write-Error "参数apikey不能为空";
     return;
 }
+
 
 Write-Warning "正在发布 nupkgs 目录下的 Nuget 包......";
 
