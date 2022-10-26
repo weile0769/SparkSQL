@@ -1,15 +1,15 @@
 ﻿using Microsoft.Extensions.Options;
-using Spark.DatabaseAccessor.Contexts;
 using Spark.DatabaseAccessor.Options;
+using Spark.DatabaseAccessor.Repositories;
 using Spark.DatabaseAccessor.SqlSugar.Utils;
 using SqlSugar;
 
-namespace Spark.DatabaseAccessor.SqlSugar.Contexts
+namespace Spark.DatabaseAccessor.SqlSugar.Repositories
 {
     /// <summary>
     ///     数据库上下文提供器默认实现
     /// </summary>
-    internal class SqlSugarDatabaseContextProvider : IDatabaseContextProvider
+    internal class SqlSugarDatabaseContext : IDatabaseContext
     {
         /// <summary>
         ///     SqlSugar数据库连接对象
@@ -24,7 +24,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Contexts
         /// <summary>
         ///   构造函数
         /// </summary>
-        public SqlSugarDatabaseContextProvider(IOptions<DatabaseAccessorOptions> options,
+        public SqlSugarDatabaseContext(IOptions<DatabaseAccessorOptions> options,
             ISqlSugarClient sqlSugarClient)
         {
             _sqlSugarClient = SparkCheck.NotNull(sqlSugarClient, nameof(sqlSugarClient));

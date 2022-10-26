@@ -1,9 +1,9 @@
-﻿namespace Spark.DatabaseAccessor.Contexts
+﻿namespace Spark.DatabaseAccessor.Repositories
 {
     /// <summary>
     ///     数据库上下文提供器
     /// </summary>
-    public interface IDatabaseContextProvider
+    public interface IDatabaseContext
     {
         /// <summary>
         ///   获取数据库连接上下文
