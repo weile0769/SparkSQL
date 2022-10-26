@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Spark.DatabaseAccessor.Options;
 using Spark.DatabaseAccessor.SqlSugar.Utils;
-using Spark.Extensions;
 using SqlSugar;
 using System.Text;
 

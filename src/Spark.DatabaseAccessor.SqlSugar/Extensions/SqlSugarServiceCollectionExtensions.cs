@@ -1,10 +1,8 @@
-﻿using Kernel.DatabaseAccessor;
-using Spark.DatabaseAccessor.Contexts;
-using Spark.DatabaseAccessor.Options;
+﻿using Spark.DatabaseAccessor.Options;
 using Spark.DatabaseAccessor.Repositories;
 using Spark.DatabaseAccessor.SqlSugar.Builders;
-using Spark.DatabaseAccessor.SqlSugar.Contexts;
 using Spark.DatabaseAccessor.SqlSugar.Extensions;
+using Spark.DatabaseAccessor.SqlSugar.Repositories;
 using Spark.DatabaseAccessor.SqlSugar.Utils;
 using SqlSugar;
 using System;
@@ -32,11 +30,13 @@ namespace Microsoft.Extensions.DependencyInjection
             //配置Sqlsugar数据库访问器
             services.AddSqlSugarDatabaseAccessor(accessorOptions);
             //配置数据库上下文提供器
-            services.AddScoped<IDatabaseContextProvider, SqlSugarDatabaseContextProvider>();
+            services.AddScoped<IDatabaseContext, SqlSugarDatabaseContext>();
             //配置非泛型数据仓储服务
-            services.AddTransient<IBaseRepository, BaseRepository>();
+            services.AddTransient<IDatabaseRepository, SqlSugarDatabaseRepository>();
+            //配置数据库事务工作单元服务
+            services.AddScoped<IDatabaseUnitOfWork, SqlSugarDatabaseUnitOfWork>();
             //配置泛型数据仓储服务
-            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddTransient(typeof(IBaseRepository<>), typeof(SqlSugarDatabaseRepository<>));
             return services;
         }
 

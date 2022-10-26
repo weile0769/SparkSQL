@@ -1,7 +1,7 @@
 ﻿using SqlSugar;
 using System;
 
-namespace Spark.Extensions
+namespace Spark.DatabaseAccessor.SqlSugar.Extensions
 {
     /// <summary>
     ///     SQL语句参数格式化扩展类
