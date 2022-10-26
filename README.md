@@ -16,7 +16,7 @@
 
 ### 🚩 项目介绍
 
-SparkSQL 一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目。目前数据库访问 OPEN API 的默认实现是基于开源国产开源ORM框架 <a href="https://gitee.com/dotnetchina/SqlSugar">SqlSugar<a/> 研发的。未来一直会致力于将常用标准API尽可能的抽象化,降低系统对开源组件方案的依赖性,让功能特性实现更加多样性、可扩展性。
+SparkSQL 一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目。目前数据库访问 OPEN API 的默认实现是基于开源ORM框架 <a href="https://gitee.com/dotnetchina/SqlSugar">SqlSugar<a/> 研发的。未来一直会致力于将常用标准API尽可能的抽象化,降低系统对开源组件方案的依赖性,让功能特性实现更加多样性、可扩展性。
 
 
 ### 🏅开源地址

@@ -35,6 +35,6 @@ for ($i = 0; $i -le $project_nupkgs.Length - 1; $i++){
 }
 
 # 回到项目根目录
-cd ../;
+cd ../../;
 
 Write-Warning "发布成功";
