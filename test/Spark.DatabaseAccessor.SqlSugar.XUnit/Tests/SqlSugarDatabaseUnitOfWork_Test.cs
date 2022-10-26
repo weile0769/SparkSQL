@@ -14,7 +14,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         /// <summary>
         ///     用户仓储
         /// </summary>
-        private readonly IBaseRepository<User> _userRepository;
+        private readonly IDatabaseRepository<User> _userRepository;
 
         /// <summary>
         ///     数据库事务工作单元提供器
@@ -24,7 +24,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         /// <summary>
         ///     构造函数
         /// </summary>
-        public SqlSugarDatabaseUnitOfWork_Test(IBaseRepository<User> userRepository,
+        public SqlSugarDatabaseUnitOfWork_Test(IDatabaseRepository<User> userRepository,
             IDatabaseUnitOfWork databaseUnitOfWork)
         {
             _userRepository = userRepository;

@@ -36,7 +36,7 @@ namespace Microsoft.Extensions.DependencyInjection
             //配置数据库事务工作单元服务
             services.AddScoped<IDatabaseUnitOfWork, SqlSugarDatabaseUnitOfWork>();
             //配置泛型数据仓储服务
-            services.AddTransient(typeof(IBaseRepository<>), typeof(SqlSugarDatabaseRepository<>));
+            services.AddTransient(typeof(IDatabaseRepository<>), typeof(SqlSugarDatabaseRepository<>));
             return services;
         }
 

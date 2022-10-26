@@ -24,19 +24,19 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         /// <summary>
         ///     用户仓储
         /// </summary>
-        private readonly IBaseRepository<User> _userRepository;
+        private readonly IDatabaseRepository<User> _userRepository;
 
         /// <summary>
         ///     其他用户仓储
         /// </summary>
-        private readonly IBaseRepository<Other> _otherRepository;
+        private readonly IDatabaseRepository<Other> _otherRepository;
 
         /// <summary>
         ///   构造函数
         /// </summary>
         public SqlsugarDatabaseRepository_Test(IServiceProvider serviceProvider,
-            IBaseRepository<User> repository,
-            IBaseRepository<Other> otherRepository)
+            IDatabaseRepository<User> repository,
+            IDatabaseRepository<Other> otherRepository)
         {
             _userRepository = repository;
             _otherRepository = otherRepository;
@@ -3578,7 +3578,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
                         await SparkScope.CreateAsync(async (serviceScope) =>
                         {
                             //构建数据库上下文
-                            var repository = serviceScope.ServiceProvider.GetRequiredService<IBaseRepository<User>>();
+                            var repository = serviceScope.ServiceProvider.GetRequiredService<IDatabaseRepository<User>>();
                             var supplierModel2 = await repository.QueryFirstOrDefaultAsync(s=>s.UserName=="小明");
                             var contextID2 = ((ISqlSugarClient)repository.DbContext).ContextID;
                             Assert.NotEqual(contextID1,contextID2);
@@ -3589,7 +3589,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
                         await SparkScope.CreateAsync(async (serviceScope) =>
                         {
                             //构建数据库上下文
-                            var repository = serviceScope.ServiceProvider.GetRequiredService<IBaseRepository<User>>();
+                            var repository = serviceScope.ServiceProvider.GetRequiredService<IDatabaseRepository<User>>();
                             var supplierModel3 = await repository.QueryFirstOrDefaultAsync(s=>s.UserName=="小明");
                             var contextID3 = ((ISqlSugarClient)repository.DbContext).ContextID;
                             Assert.NotEqual(contextID1,contextID3);

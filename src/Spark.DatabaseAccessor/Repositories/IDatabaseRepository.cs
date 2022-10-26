@@ -25,7 +25,7 @@ namespace Spark.DatabaseAccessor.Repositories
     ///     泛型数据仓储
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public partial interface IBaseRepository<TEntity> where TEntity : class, new()
+    public partial interface IDatabaseRepository<TEntity> where TEntity : class, new()
     {
         /// <summary>
         ///     数据库上下文
@@ -536,7 +536,7 @@ namespace Spark.DatabaseAccessor.Repositories
     /// <summary>
     ///   泛型数据仓储
     /// </summary>
-    public partial interface IBaseRepository<TEntity> where TEntity : class, new()
+    public partial interface IDatabaseRepository<TEntity> where TEntity : class, new()
     {
 
         #region Query

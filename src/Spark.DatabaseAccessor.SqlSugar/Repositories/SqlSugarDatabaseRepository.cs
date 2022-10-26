@@ -45,7 +45,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Repositories
     /// <summary>
     ///     泛型数据仓储
     /// </summary>
-    internal partial class SqlSugarDatabaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
+    internal partial class SqlSugarDatabaseRepository<TEntity> : IDatabaseRepository<TEntity> where TEntity : class, new()
     {
         /// <summary>
         ///     SqlSugar数据库连接对象
@@ -801,7 +801,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Repositories
     /// <summary>
     ///     泛型数据仓储
     /// </summary>
-    internal partial class SqlSugarDatabaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, new()
+    internal partial class SqlSugarDatabaseRepository<TEntity> : IDatabaseRepository<TEntity> where TEntity : class, new()
     {
         #region Query
 
