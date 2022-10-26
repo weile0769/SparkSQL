@@ -2941,24 +2941,26 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
         {
             //创建ID标识
             var id = IDGen.SequentialInt64();
+            //创建ID标识
+            var id1 = IDGen.SequentialInt64();
             //初始化表
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = id1,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModels);
             var deleteSuccessedCount = await _userRepository.DeleteAsync(userModels);
             Assert.Equal(insertSuccessedCount, deleteSuccessedCount);
@@ -3049,20 +3051,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.SaveableAsync(userModels);
             //查询全部
             userModels = await _userRepository.QueryAllAsync();
@@ -3089,20 +3091,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             await _userRepository.SaveableAsync(userModels);
             //查询全部
             userModels = await _userRepository.QueryAllAsync();
@@ -3140,20 +3142,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             var insertSuccessedCount = await _userRepository.BulkCopyAsync(userModels);
             //查询全部
             userModels = await _userRepository.QueryAllAsync();
@@ -3210,22 +3212,22 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456",
-        Birthday = DateTime.Now
-      },
-      new User
-      {
-        Id = id1,
-        UserName = "小明",
-        Password = "123456",
-        Birthday = DateTime.Now
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456",
+                Birthday = DateTime.Now
+              },
+              new User
+              {
+                Id = id1,
+                UserName = "小明",
+                Password = "123456",
+                Birthday = DateTime.Now
+              }
+            };
             var insertSuccessedCount = await _userRepository.BulkCopyAsync(userModels);
             userModels.ForEach(s => s.Password = "654321");
             var updateSuccessedCount = await _userRepository.BulkUpdateAsync(userModels);
@@ -3351,20 +3353,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             _userRepository.InsertQueue(userModels);
             var insertSuccessedCount = await _userRepository.SaveQueuesAsync(true);
             //查询全部
@@ -3515,20 +3517,20 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
             _userRepository.TruncateTable();
             //插入数据
             var userModels = new List<User>
-    {
-      new User
-      {
-        Id = id,
-        UserName = "小明",
-        Password = "123456"
-      },
-      new User
-      {
-        Id = 2,
-        UserName = "小明",
-        Password = "123456"
-      }
-    };
+            {
+              new User
+              {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+              },
+              new User
+              {
+                Id = 2,
+                UserName = "小明",
+                Password = "123456"
+              }
+            };
             var insertSuccessedCount = await _userRepository.InsertAsync(userModels);
             //更新数据
             userModels.ForEach(s => s.Password = "654321");

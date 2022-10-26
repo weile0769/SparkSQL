@@ -627,22 +627,390 @@ public async Task AppointUpdateColumnsListUpdateAsync_Sample()
 #### 6. 数据删除使用案例
 下面列举的案例是异步案例，同步案例用法一致。
 
+**单条实体删除使用案例**
+```csharp
+/// <summary>
+///   SingleDeleteAsync_Sample 单条实体删除使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleDeleteAsync_Sample()
+{
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    await _userRepository.DeleteAsync(userModel);
+}
+```
+
+**多条实体删除使用案例**
+```csharp
+/// <summary>
+///   ListDeleteAsync_Sample 多条实体删除使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListDeleteAsync_Sample()
+{
+    var userModels = await _userRepository.QueryAsync(s => s.Id=5757720142968560414); 
+    if(!userModels.Any()) throw new ArgumentNullException(nameof(userModels),"用户数据为空");
+    await _userRepository.DeleteAsync(userModels);
+}
+```
 
 
 #### 7. 数据保存使用案例
 下面列举的案例是异步案例，同步案例用法一致。
 
+**单条实体保存使用案例**
+```csharp
+/// <summary>
+///   SingleSaveableAsync_Sample 单条实体保存使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleSaveableAsync_Sample()
+{
+    var id = 5757720142968560414;
+    var userModel = new User
+    {
+        Id = id,
+        UserName = "小明",
+        Password = "123456"
+    };
+    await _userRepository.SaveableAsync(userModel);
+}
+```
+
+**单条实体指定列保存使用案例**
+```csharp
+/// <summary>
+///   SingleSaveableWithUpdateColumnsAsync_Sample 单条实体指定列保存使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleSaveableWithUpdateColumnsAsync_Sample()
+{
+    var id = 5757720142968560414;
+    var userModel = new User
+    {
+        Id = id,
+        UserName = "小明",
+        Password = "123456"
+    };
+    await _userRepository.SaveableAsync(userModel);
+    userModel.Password = "654321";
+    await _userRepository.SaveableAsync(userModel, s => new { s.Password });
+}
+```
+
+**多条实体保存使用案例**
+```csharp
+/// <summary>
+///   ListSaveableAsync_Sample 多条实体保存使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListSaveableAsync_Sample()
+{
+    var id1 = 5757720142968560414;
+    var id1 = 5757720142968560415;
+    var userModels = new List<User>
+    {
+        new User
+        {
+        Id = id1,
+        UserName = "小明",
+        Password = "123456"
+        },
+        new User
+        {
+        Id = id1,
+        UserName = "小明",
+        Password = "123456"
+        }
+    };
+    await _userRepository.SaveableAsync(userModels);
+}
+```
+
+**多条实体指定列保存使用案例**
+```csharp
+/// <summary>
+///   ListSaveableWithUpdateColumnsAsync_Sample 多条实体指定列保存使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListSaveableWithUpdateColumnsAsync_Sample()
+{
+    var id1 = 5757720142968560414;
+    var id1 = 5757720142968560415;
+    var userModels = new List<User>
+    {
+        new User
+        {
+        Id = id1,
+        UserName = "小明",
+        Password = "123456"
+        },
+        new User
+        {
+        Id = id1,
+        UserName = "小明",
+        Password = "123456"
+        }
+    };
+    await _userRepository.SaveableAsync(userModels);
+    userModels.ForEach(s =>
+    {
+        s.Password = "654321";
+        s.LastModified = modifiedTime;
+    });
+    await _userRepository.SaveableAsync(userModels, s => new { s.LastModified,s.Password });
+}
+```
+
+
 #### 8. 大数据插入使用案例
 下面列举的案例是异步案例，同步案例用法一致。
+
+**大数据实体插入使用案例**
+```csharp
+/// <summary>
+///   ListBulkCopyAsync_Sample 大数据实体插入使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListBulkCopyAsync_Sample()
+{
+    var id1 = 5757720142968560414;
+    var id1 = 5757720142968560415;
+    var userModels = new List<User>
+    {
+        new User
+        {
+        Id = id1,
+        UserName = "小明",
+        Password = "123456"
+        },
+        new User
+        {
+        Id = id1,
+        UserName = "小明",
+        Password = "123456"
+        }
+    };
+    await _userRepository.BulkCopyAsync(userModels);
+}
+```
+
+**大数据DataTable插入使用案例**
+```csharp
+/// <summary>
+///   DataTableBulkCopyAsync_Sample 大数据DataTable插入使用案例
+/// </summary>
+/// <returns></returns>
+public async Task DataTableBulkCopyAsync_Sample()
+{
+    var id1 = 5757720142968560414;
+    var id1 = 5757720142968560415;
+    var dataTable = new DataTable();
+    dataTable.Columns.Add("id", typeof(long));
+    dataTable.Columns.Add("create_time", typeof(DateTime));
+    dataTable.Columns.Add("modify_time", typeof(DateTime));
+    dataTable.Columns.Add("record_state", typeof(int));
+    dataTable.Columns.Add("user_name", typeof(string));
+    dataTable.Columns.Add("password", typeof(string));
+    dataTable.Columns.Add("gender", typeof(int));
+    dataTable.Rows.Add(id1, DateTime.Now, DateTime.Now, 1, "小明", "123456", GenderEnum.Boy);
+    dataTable.Rows.Add(id1, DateTime.Now, DateTime.Now, 1, "小花", "123456", GenderEnum.Girl);
+    await _userRepository.BulkCopyAsync("user", dataTable);
+}
+```
 
 #### 9. 大数据更新使用案例
 下面列举的案例是异步案例，同步案例用法一致。
 
+**大数据实体更新使用案例**
+```csharp
+/// <summary>
+///   ListBulkUpdateAsync_Sample 大数据实体更新使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListBulkUpdateAsync_Sample()
+{
+    var userModels = await _userRepository.QueryAsync(s => s.Id=5757720142968560414); 
+    if(!userModels.Any()) throw new ArgumentNullException(nameof(userModels),"用户数据为空");
+    userModels.ForEach(s => s.Password = "654321");
+    await _userRepository.BulkUpdateAsync(userModels);
+}
+```
+
+
+
 #### 10. 执行SQL使用案例
 下面列举的案例是异步案例，同步案例用法一致。
+
+**SQL执行使用案例**
+```csharp
+/// <summary>
+///   SqlExecuteCommandAsync_Sample SQL执行使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SqlExecuteCommandAsync_Sample()
+{
+    var sql = "update user set password = '654321' where id = @id";
+    await _userRepository.ExecuteCommandAsync(sql, new { id = id });
+}
+```
+
 
 #### 11. 打包提交使用案例
 下面列举的案例是异步案例，同步案例用法一致。
 
+**单条实体插入提交使用案例**
+```csharp
+/// <summary>
+///   SingleInsertQueueAsync_Sample 单条实体插入提交使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleInsertQueueAsync_Sample()
+{
+    var userModel = new User
+    {
+        Id = id,
+        UserName = "小明",
+        Password = "123456"
+    };
+    _userRepository.InsertQueue(userModel);
+    await _userRepository.SaveQueuesAsync(true);
+}
+```
+
+**多条实体插入提交使用案例**
+```csharp
+/// <summary>
+///   ListInsertQueueAsync_Sample 多条实体插入提交使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ListInsertQueueAsync_Sample()
+{
+    var userModels = new List<User>
+    {
+        new User
+        {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+        },
+        new User
+        {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+        }
+    };
+    _userRepository.InsertQueue(userModels);
+    await _userRepository.SaveQueuesAsync(true);
+}
+```
+**单条实体更新提交使用案例**
+```csharp
+/// <summary>
+///   SingleUpdateQueueAsync_Sample 单条实体更新提交使用案例
+/// </summary>
+/// <returns></returns>
+public async Task SingleUpdateQueueAsync_Sample()
+{
+    //更新数据
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    userModel.Password = "654321";
+    _userRepository.UpdateQueue(userModel);
+    await _userRepository.SaveQueuesAsync(true);
+}
+```
+
+**单条实体指定列更新提交使用案例**
+```csharp
+/// <summary>
+///   AppointUpdateQueueColumnsSingleUpdateAsync_Sample 单条实体指定列更新提交使用案例
+/// </summary>
+/// <returns></returns>
+public async Task AppointUpdateQueueColumnsSingleUpdateAsync_Sample()
+{
+    //更新数据
+    var userModel = await _userRepository.QuerySingleAsync(s => s.Id=5757720142968560414); 
+    if(userModel==null) throw new ArgumentNullException(nameof(userModel),"用户数据为空");
+    userModel.Password = "654321";
+    _userRepository.UpdateQueue(userModel, s => new { s.Password });
+    await _userRepository.SaveQueuesAsync(true);
+}
+```
+
 #### 12. 多线程使用案例
 下面列举的案例是异步案例，同步案例用法一致。
+
+**多线程使用案例**
+```csharp
+/// <summary>
+///   ParallelTaskExecuteCommandAsync_Sample 多线程使用案例
+/// </summary>
+/// <returns></returns>
+public async Task ParallelTaskExecuteCommandAsync_Sample()
+{
+    var userQueue=new ConcurrentQueue<User>();
+    var tasks = new Task[]
+    {
+        Task.Run(async () =>
+        {
+                await SparkScope.CreateAsync(async (serviceScope) =>
+                {
+                    //构建数据库上下文
+                    var repository = serviceScope.ServiceProvider.GetRequiredService<IBaseRepository<User>>();
+                    var userModel = await repository.QueryFirstOrDefaultAsync(s=>s.UserName=="小明");
+                    userQueue.Enqueue(userModel);
+                });
+        }),
+        Task.Run(async () =>
+        {
+                await SparkScope.CreateAsync(async (serviceScope) =>
+                {
+                    //构建数据库上下文
+                    var repository = serviceScope.ServiceProvider.GetRequiredService<IBaseRepository<User>>();
+                    var userModel = await repository.QueryFirstOrDefaultAsync(s=>s.UserName=="小明");
+                    userQueue.Enqueue(userModel);
+                });
+        }),
+    };
+    Task.WaitAll(tasks);
+}
+```
+
+#### 13. 事务提交使用案例
+
+**事务提交使用案例**
+```csharp
+/// <summary>
+///   DatabaseUnitOfWork_Sample 事务提交使用案例
+/// </summary>
+/// <returns></returns>
+public async Task DatabaseUnitOfWork_Sample()
+{
+    var userModel = new User
+    {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小明",
+        Password = "123456"
+    };
+    var userModel1 = new User
+    {
+        Id = IDGen.SequentialInt64(),
+        UserName = "小花",
+        Password = "123456"
+    };
+    try
+    {
+        _databaseUnitOfWork.BeginTran();
+        await _userRepository.InsertAsync(userModel);
+        await _userRepository.InsertAsync(userModel1);
+        _databaseUnitOfWork.CommitTran();
+    }
+    catch
+    {
+        _databaseUnitOfWork.RollbackTran();
+    }
+}
+```
