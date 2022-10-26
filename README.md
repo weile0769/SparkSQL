@@ -2,7 +2,7 @@
 	<h1 align="center" style="color:#4da7fd"><b>SparkSQL</b></h1>
 </div>
 <div align="center">
-<span align="center" style="font-weight:bold" ><⚡一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目</span>
+<span align="center" style="font-weight:bold" >⚡一款高度抽象的、开箱即用的、具备标准常用数据库访问 OPEN API 的项目</span>
 <br>
 <span align="center" style="letter-spacing:1.8px" >致力于功能抽象化,降低系统对开源组件方案的依赖性,让功能特性实现更加多样性、可扩展性。</span>
 </div>
@@ -32,7 +32,7 @@ dotnet add package Spark.DatabaseAccessor.SqlSugar
 ```
 ### 📖 更新日志
 
-请查看 [Release Notes](docs)
+请查看 [Release Notes](docs/CHANGELOG.zh.md)
 
 ### 🎉 功能介绍
 #### 1. 项目配置案例
@@ -626,6 +626,8 @@ public async Task AppointUpdateColumnsListUpdateAsync_Sample()
 
 #### 6. 数据删除使用案例
 下面列举的案例是异步案例，同步案例用法一致。
+
+
 
 #### 7. 数据保存使用案例
 下面列举的案例是异步案例，同步案例用法一致。

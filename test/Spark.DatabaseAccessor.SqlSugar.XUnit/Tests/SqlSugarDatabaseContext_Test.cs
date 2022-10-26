@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Spark.DatabaseAccessor.Repositories;
 using Spark.DatabaseAccessor.SqlSugar.Utils;
 using Spark.DatabaseAccessor.SqlSugar.XUnit.Entities;
 using Spark.DatabaseAccessor.Utils;
@@ -8,11 +9,29 @@ using Xunit;
 namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
 {
     /// <summary>
-    ///     单例数据库上下文测试
+    ///     数据库上下文测试
     /// </summary>
-    [Collection("数据仓储测试案例顺序执行组别")]
-    public class SingtonDatabaseContext_Test
+    [Collection("数据库测试案例顺序执行组别")]
+    public class SqlSugarDatabaseContext_Test
     {
+        /// <summary>
+        ///     数据库上下文提供器
+        /// </summary>
+        private readonly IDatabaseContext _databaseContextProvider;
+
+        /// <summary>
+        ///     构造函数
+        /// </summary>
+        public SqlSugarDatabaseContext_Test(IDatabaseContext databaseContextProvider)
+        {
+            _databaseContextProvider = databaseContextProvider;
+        }
+
+        /// <summary>
+        ///     数据库上下文
+        /// </summary>
+        private ISqlSugarClient _context => (ISqlSugarClient)_databaseContextProvider.GetDatabaseContext();
+
         /// <summary>
         ///   SingtonDatabase_Test单例数据库上下文测试案例
         /// </summary>
@@ -102,6 +121,30 @@ namespace Spark.DatabaseAccessor.SqlSugar.XUnit.Tests
                 var contextID4 = context4.ContextID;
                 Assert.Equal(contextID1, contextID4);
             });
+        }
+
+        /// <summary>
+        ///   DatabaseContextProvider_Test数据库上下文提供器测试案例
+        /// </summary>
+        /// <returns></returns>
+        [Fact(DisplayName = "数据库上下文提供器测试案例")]
+        public async Task DatabaseContextProvider_Test()
+        {
+            //创建ID标识
+            var id = IDGen.SequentialInt64();
+            //初始化表
+            _context.DbMaintenance.TruncateTable<User>();
+            //插入数据
+            var userModel = new User
+            {
+                Id = id,
+                UserName = "小明",
+                Password = "123456"
+            };
+            var insertSuccessedCount = await _context.Insertable(userModel).ExecuteCommandAsync();
+            //查询全部
+            var userModels = await _context.Queryable<User>().ToListAsync();
+            Assert.Equal(userModels.Count, insertSuccessedCount);
         }
     }
 }
