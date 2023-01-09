@@ -1,4 +1,14 @@
-﻿### 0.2.2
+﻿### 1.0.0
+2023-01-09
++ **功能**
+  + 实体特性SqlTable配置构造器SqlSugarDatabaseEntitiesTypesBuilder添加数据库Schema支持
++ **重命名**
+  + SqlSugarApplicationBuilderExtension重命名为IApplicationBuilderExtensions
+  + SqlSugarServiceCollectionExtension重命名为IServiceCollectionExtensions
+  + SqlSugarClientExtensions重命名为ISqlSugarClientExtensions
+  + SqlSugarSqlProfilerExtensions重命名为SqlProfilerExtensions
+
+### 0.2.2
 
 2022-10-26
 + **功能**

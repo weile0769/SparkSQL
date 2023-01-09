@@ -11,7 +11,7 @@
 <img alt="visual studio 2022" src="https://img.shields.io/badge/Visual Studio-2022-blue.svg">
 <img alt="csharp" src="https://img.shields.io/badge/language-csharp-brightgreen.svg">
 <img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg">
-<img alt="release" src="https://img.shields.io/badge/release-0.1.0-green">
+<img alt="release" src="https://img.shields.io/badge/release-1.0.0-green">
 </p>
 
 ### 🚩 项目介绍
