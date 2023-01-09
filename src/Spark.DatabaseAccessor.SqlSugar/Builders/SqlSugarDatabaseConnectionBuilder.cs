@@ -25,7 +25,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Builders
                 ConfigureExternalServices = new ConfigureExternalServices()
                 {
                     EntityService = SqlSugarDatabaseEntitiesPropertiesBuilder.Build,
-                    EntityNameService = SqlSugarDatabaseEntitiesTypesBuilder.Build
+                    EntityNameService = (type, entityinfo) => SqlSugarDatabaseEntitiesTypesBuilder.Build(type, entityinfo, option)
                 },
                 SlaveConnectionConfigs = option.EnabledSlaveDatabaseConnections.Select(s => new SlaveConnectionConfig
                 {

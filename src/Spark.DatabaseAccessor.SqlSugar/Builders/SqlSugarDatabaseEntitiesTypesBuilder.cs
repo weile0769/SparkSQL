@@ -1,4 +1,5 @@
 ﻿using Spark.DatabaseAccessor.Attributes;
+using Spark.DatabaseAccessor.Options;
 using SqlSugar;
 using System;
 using System.Reflection;
@@ -15,14 +16,29 @@ namespace Spark.DatabaseAccessor.SqlSugar.Builders
         /// </summary>
         /// <param name="type">实体类型</param>
         /// <param name="entity">实体属性</param>
-        internal static void Build(Type type, EntityInfo entity)
+        /// <param name="databaseOptions">数据库驱动全局配置</param>
+        internal static void Build(Type type, EntityInfo entity, DatabaseConnections databaseOptions)
         {
             var sqltable = type.GetCustomAttribute<SqlTableAttribute>();
-            if (sqltable == null) return;
-            entity.DbTableName = sqltable.TableName.IsNullOrEmpty() ? type.Name : sqltable.TableName;
-            entity.TableDescription = sqltable.TableDescription;
-            entity.IsDisabledUpdateAll = sqltable.IsDisabledUpdateAll;
-            entity.IsDisabledDelete = sqltable.IsDisabledDelete;
+            if (sqltable == null)
+            {
+                if (databaseOptions.Schema.IsNotNullOrEmpty())
+                {
+                    entity.DbTableName = $"{databaseOptions.Schema}.{entity.DbTableName}";
+                }
+            }
+            else
+            {
+                var tableName = sqltable.TableName.IsNullOrEmpty() ? entity.DbTableName : sqltable.TableName;
+                if (databaseOptions.Schema.IsNotNullOrEmpty())
+                {
+                    tableName = $"{databaseOptions.Schema}.{tableName}";
+                }
+                entity.DbTableName = tableName;
+                entity.TableDescription = sqltable.TableDescription;
+                entity.IsDisabledUpdateAll = sqltable.IsDisabledUpdateAll;
+                entity.IsDisabledDelete = sqltable.IsDisabledDelete;
+            }
         }
     }
 }
