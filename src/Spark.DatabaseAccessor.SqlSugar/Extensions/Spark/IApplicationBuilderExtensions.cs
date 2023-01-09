@@ -5,7 +5,7 @@ namespace Microsoft.AspNetCore.Builder
     /// <summary>
     ///     数据库操作提供器应用构建扩展类
     /// </summary>
-    public static class SqlSugarApplicationBuilderExtension
+    public static class IApplicationBuilderExtensions
     {
         /// <summary>
         ///     配置数据库操作提供器应用构建

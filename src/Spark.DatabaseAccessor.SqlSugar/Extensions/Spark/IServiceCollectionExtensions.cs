@@ -12,7 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
     /// <summary>
     ///     数据库操作提供器容器服务扩展类
     /// </summary>
-    public static class SqlSugarServiceCollectionExtensions
+    public static class IServiceCollectionExtensions
     {
         /// <summary>
         ///     添加数据库操作提供器容器服务

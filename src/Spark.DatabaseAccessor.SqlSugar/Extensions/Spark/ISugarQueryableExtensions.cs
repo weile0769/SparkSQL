@@ -8,7 +8,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Extensions
     /// <summary>
     ///     分页拓展类
     /// </summary>
-    public static class SqlSugarPageQueryableExtensions
+    public static class ISugarQueryableExtensions
     {
         /// <summary>
         ///     分页拓展

@@ -10,7 +10,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Extensions
     /// <summary>
     ///     SqlSugarClient扩展类
     /// </summary>
-    internal static class SqlSugarClientExtensions
+    internal static class ISqlSugarClientExtensions
     {
         /// <summary>
         ///     配置SqlSugarClient数据库对象Aop事件

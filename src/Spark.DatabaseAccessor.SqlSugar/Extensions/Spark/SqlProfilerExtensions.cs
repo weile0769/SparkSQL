@@ -6,7 +6,7 @@ namespace Spark.DatabaseAccessor.SqlSugar.Extensions
     /// <summary>
     ///     SQL语句参数格式化扩展类
     /// </summary>
-    internal static class SqlSugarSqlProfilerExtensions
+    internal static class SqlProfilerExtensions
     {
         /// <summary>
         ///     格式化参数
